@@ -13,6 +13,9 @@ choose to make one and expand the capabilities of the implementation.
 
 ### TODO
 * Look into XBMC/Kodi
+> Kodi has been vetoed due to performance issues and complexity. While there
+> may be integration later, when the GUI is built, it will not be the core of
+> this system.
 * Test controllers
 * Get wireless controller
 * Planning
