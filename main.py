@@ -19,6 +19,18 @@ clock = pygame.time.Clock()
 
 pygame.joystick.init()
 
+# CHEX MIX
+# TODO add pygame printing
+nogo = True
+while nogo:
+    joystick_count = pygame.joystick.get_count()
+    if joystick_count == 0:
+        print "Please connect a joystick"
+	nogo = True
+    if joystick_count == 1:
+	print "Joystick Recognized"
+	nogo = False
+
 # MAIN GAME LOOP
 while done == False:
     # EVENT PROCESSING
