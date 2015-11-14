@@ -10,14 +10,11 @@ pygame.init()
 # Size [width, height]
 size = [500, 700] 
 screen = pygame.display.set_mode(size)
-
 pygame.display.set_caption("Music Control")
+clock = pygame.time.Clock()
+pygame.joystick.init()
 
 done = False
-
-clock = pygame.time.Clock()
-
-pygame.joystick.init()
 
 # CHEX MIX
 # TODO add pygame printing
@@ -30,6 +27,8 @@ while nogo:
     if joystick_count == 1:
 	print "Joystick Recognized"
 	nogo = False
+    if joystick_count > 1:
+	# Pick a joystick
 
 # MAIN GAME LOOP
 while done == False:
