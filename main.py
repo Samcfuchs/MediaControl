@@ -1,5 +1,6 @@
 import pygame
 from os import sys
+from musicplayer import MusicPlayer
 
 # Colors
 BLACK = (0, 0, 0,)
@@ -13,8 +14,10 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Music Control")
 clock = pygame.time.Clock()
 pygame.joystick.init()
+player = MusicPlayer()
 
-done = False
+# BUTTON VALUES
+
 
 # CHEX MIX
 # TODO add pygame printing
@@ -30,6 +33,7 @@ while nogo:
     if joystick_count > 1:
 	# Pick a joystick
 
+done = False
 # MAIN GAME LOOP
 while done == False:
     # EVENT PROCESSING
