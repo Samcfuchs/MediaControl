@@ -21,7 +21,7 @@ player = MusicPlayer()
 Controller = pygame.joystick.Joystick(0)
 Controller.init()
 HAT_VAL = 0
-MUTE_BUTTON = 6
+MUTE_BUTTON = 3
 PAUSE_BUTTON = 0
 NEXT_BUTTON = 5
 PREV_BUTTON = 4
@@ -46,8 +46,6 @@ muted = False
 last_volume = player.get_volume()
 # MAIN GAME LOOP
 while done == False:
-    print "MUTED: " + str(muted)
-    print "LAST VOL: " + str(last_volume)
     # EVENT PROCESSING    
     for event in pygame.event.get(pygame.JOYBUTTONDOWN):
 	print "Button pressed: " + str(event.button)
