@@ -6,10 +6,7 @@ from song import Song
 class MusicPlayer:
     '''A class to contain all the functions related to mpc'''
     def __init__(self):
-	print "Created MusicPlayer instance"
-
-    def shuffle(self):
-	sys("mpc shuffle")
+	sys("mpc update")
 
     def get_now_playing(self):
 	out_string = subprocess.check_output("mpc current")
@@ -18,6 +15,9 @@ class MusicPlayer:
 	song = out_list[1]
 
 	return Song(artist, album, song)
+
+    def shuffle(self):
+	sys("mpc shuffle")
 	
     def volume_adjust(self, value):
 	'''Changes the volume by value (+-)'''
@@ -38,8 +38,26 @@ class MusicPlayer:
     def mute(self):
 	'''Mutes music'''
 	sys("mpc volume 0")
+	#self.say("Music muted")
     
+    def toggle_pause(self):
+	'''Pauses music'''
+	sys("mpc toggle")
+
     def pause(self):
 	'''Pauses music'''
 	sys("mpc pause")
 
+    def say(self, statement):
+	'''Uses espeak to say something'''
+	self.pause()
+	sys("espeak \"" + statement + "\"")
+	self.toggle_pause()
+
+    def next_song(self):
+	'''Goes to next song on playlist'''
+	sys("mpc next")
+
+    def previous_song(self):
+	'''Goes to previous song on playlist'''
+	sys("mpc prev")

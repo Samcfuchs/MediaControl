@@ -23,6 +23,8 @@ Controller.init()
 HAT_VAL = 0
 MUTE_BUTTON = 6
 PAUSE_BUTTON = 0
+NEXT_BUTTON = 5
+PREV_BUTTON = 4
 
 # CHEX MIX
 # TODO add pygame printing
@@ -40,33 +42,34 @@ while nogo:
         print "Too many joysticks"
 
 done = False
+muted = False
 # MAIN GAME LOOP
 while done == False:
-    # EVENT PROCESSING
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = True
-        if event.type == pygame.JOYBUTTONDOWN:
-            print "button press"
-        if event.type == pygame.JOYBUTTONUP:
-            print "button release"
-    
+    # EVENT PROCESSING    
+    for event in pygame.event.get(pygame.JOYBUTTONDOWN):
+	print "Button pressed: " + str(event.button)
+	if event.button == PAUSE_BUTTON:
+	    player.toggle_pause()
+	elif event.button == MUTE_BUTTON:
+	    if muted:
+	        # Reset volume
+	    else:
+		# get volume
+		player.mute()
+	        muted = True
+	elif event.button == NEXT_BUTTON:
+	    player.next_song()
+	elif event.button == PREV_BUTTON:
+	    player.previous_song()
+
     # CHANGE VOLUME
     hat = Controller.get_hat(HAT_VAL)
     margin = "2"
     if hat[1] == 1:
 	player.volume_adjust("+" + margin)
-    if hat[1] == -1:
+    elif hat[1] == -1:
 	player.volume_adjust("-" + margin)
 
-    # MUTING
-    if Controller.get_button(MUTE_BUTTON) == 1:
-	player.mute()
-
-    # PAUSING
-    if Controller.get_button(PAUSE_BUTTON) == 1:
-	player.pause()
-    
     # DRAWING
     #screen.fill(WHITE)
 
