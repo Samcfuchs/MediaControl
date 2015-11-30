@@ -14,3 +14,17 @@ control the local mpd.
 
 ### Buttons
 
+| Button | Function
+|--------|----------
+| Y      | Mute (toggle)
+| A      | Pause
+| XBOX   | Quit
+| LB     | Next Song
+| RB     | Previous Song
+
+#### D-pad
+
+| Direction | Function
+|-----------|----------
+| UP        | Volume increase
+| Down      | Volume decrease
