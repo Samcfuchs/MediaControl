@@ -8,9 +8,22 @@ class MusicPlayer:
     def __init__(self):
 	sys("mpc update")
 
+    def get_volume(self):
+	command = ["mpc", "volume"]
+	p = subprocess.Popen(command, stdout=subprocess.PIPE)
+	raw_out = p.stdout.read()
+	retcode = p.wait
+
+	number = raw_out[8:10]
+	return number
+	
     def get_now_playing(self):
-	out_string = subprocess.check_output("mpc current")
-	out_list = out_string.split(" - ")
+	command = ["mpc", "current"]
+	p = subprocess.Popen(command, stdout=subprocess.PIPE)
+	raw_out = p.stdout.read()
+	retcode = p.wait
+
+	out_list = raw_out.split(" - ")
 	artist = out_list[0]
 	song = out_list[1]
 

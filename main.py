@@ -43,8 +43,11 @@ while nogo:
 
 done = False
 muted = False
+last_volume = player.get_volume()
 # MAIN GAME LOOP
 while done == False:
+    print "MUTED: " + str(muted)
+    print "LAST VOL: " + str(last_volume)
     # EVENT PROCESSING    
     for event in pygame.event.get(pygame.JOYBUTTONDOWN):
 	print "Button pressed: " + str(event.button)
@@ -52,9 +55,10 @@ while done == False:
 	    player.toggle_pause()
 	elif event.button == MUTE_BUTTON:
 	    if muted:
-	        # Reset volume
+		player.volume_set(last_volume)
+		muted = False
 	    else:
-		# get volume
+		last_volume = player.get_volume()
 		player.mute()
 	        muted = True
 	elif event.button == NEXT_BUTTON:
